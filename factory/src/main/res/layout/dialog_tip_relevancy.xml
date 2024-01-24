@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_73"
+        android:text="您的店铺正被关联中 无法发起关联分店申请"
+        android:gravity="center"
+        android:textColor="#ED333333"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textSize="@dimen/sp_15"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="#FFEDEDED"/>
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/sp_17"
+        android:textColor="#FF1A87E8"
+        android:layout_gravity="center"
+        android:text="我知道了"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_11"
+        android:layout_height="wrap_content" />
+</LinearLayout>

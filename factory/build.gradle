@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.mob.sdk'
+
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.WjzNotGG'
+android {
+    compileSdkVersion 29
+
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }
+    }
+
+
+    task generateSourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier 'sources'
+    }
+
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //网络请求框架
+    api 'com.squareup.okio:okio:3.0.0'
+//    api (platform("com.squareup.okhttp3:okhttp-bom:4.11.0"))
+//    api 'com.squareup.okhttp3:okhttp:4.11.0'
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+    //Json框架
+    api 'com.alibaba:fastjson:1.2.75'
+    api project(':common')
+
+    //动态切换BaseUrl
+    api 'me.jessyan:retrofit-url-manager:1.4.0'
+
+
+}
